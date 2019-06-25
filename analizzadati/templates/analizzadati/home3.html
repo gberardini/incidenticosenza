@@ -1,0 +1,71 @@
+{% extends "analizzadati/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="content">
+        <div class="container-fluid ">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8 pt-lg-5 ml-auto mr-auto ">
+                        <!--
+                        non chiusi -->
+                        <div class="card card-wizard">
+                            <div class="card-header ">
+                                <h3 class="card-title text-center">Wizard </h3>
+                                <p class="card-category text-center">Inserisci informazioni per l'analisi degli incidenti</p>
+                            </div>
+
+
+                            <div class="card-body ">
+                                <!--  <ul class="nav nav-tabs">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="" value="" data-toggle="tab" role="tab" aria-controls="tab1" aria-selected="true">First Tab</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <form action='' method='POST'>{% csrf_token %}
+                                            <button class="nav-link"  data-toggle="tab" type="submit"
+                                            value="{{ wizard.steps.next }}" role="tab" aria-controls="tab2"  aria-selected="true">Second Tab</button>
+                                            {{ wizard.management_form }}
+                                            <button class="nav-link active" data-toggle="tab" role="tab" name="wizard_goto_step" aria-controls="tab1" aria-selected="true" type="submit" value="{{ wizard.steps.next }}"> Next </button>
+                                        </form>
+                                    </li>
+                                </ul> -->
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                                        <p class="text-center">Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-5 ">
+                                                <div class="form-group">
+                                                    <p></p>
+                                                    <form action="" method="post">{% csrf_token %}
+                                                        <table>
+                                                            {{ wizard.management_form }}
+                                                            {% if wizard.form.forms %}
+                                                                {{ wizard.form.management_form }}
+                                                                {% for form in wizard.form.forms %}
+                                                                    {{ form }}
+                                                                {% endfor %}
+                                                            {% else %}
+                                                                {{ wizard.form }}
+                                                            {% endif %}
+                                                        </table>
+                                                        {% if wizard.steps.prev %}
+                                                            <button type="button" class="btn btn-default btn-wd btn-back pull-left" value="{{ wizard.steps.first }}">First</button>
+                                                            <button type="button" class="btn btn-info btn-wd btn-next pull-right" value="{{ wizard.steps.prev }}">Back</button>
+                                                        {% endif %}
+                                                        <input class="btn btn-fill btn-info center-block" type="submit" value="submit"/>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

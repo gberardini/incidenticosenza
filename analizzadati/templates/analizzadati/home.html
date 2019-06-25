@@ -1,0 +1,89 @@
+{% extends "analizzadati/base.html" %}
+
+{% load static %}
+
+
+
+
+
+
+
+{% block content %}
+
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row justify-content-md-center p-5" >
+            <div class="col-md-6 " >
+
+
+
+
+
+
+                    <div class="card stacked-form">
+                        <div class="card-header ">
+                            <h4 class="card-title text-center">Analyze Account</h4>
+                        </div>
+                        <div class="card-body ">
+                           <!--    <form method="#" action="regular.html#"> -->
+                            <form method="POST" action='' enctype="multipart/form-data">
+                              <div class="form-group">
+
+                                {% csrf_token %}
+
+                                 <input type="file" name="myfile">
+                                <div class="card-footer text-center">
+
+                                  <button id="prova" type="submit" class="btn btn-fill btn-info center-block" >  AnalizzaCSV </button>
+
+
+                              </div>
+
+
+                          </div>
+
+
+
+
+
+
+
+                      </form>
+                  </div>
+
+
+
+
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+</html>

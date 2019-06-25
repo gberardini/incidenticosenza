@@ -302,7 +302,7 @@ body,
 .wrapper {
     min-height: 100vh;
     position: relative;
-   background-image: url('../template.jpg');
+   background-image: url('../template_car.jpg');
   background-repeat:repeat;
 }
 

@@ -75,6 +75,9 @@ class Box():
             # print("append campo", field)
             self.fields.append(field)
 
+        print('CAMPI CREATI \n')
+        print(self.fields)
+
 
 class MyForm(forms.Form):
 

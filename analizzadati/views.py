@@ -15,6 +15,7 @@ from .uploadfileform import CheckBox, MyForm, Box
 def home(request):
 
     if request.method == 'GET':
+        request.session.clear()
         return render(request, "analizzadati/home.html")
 
     if request.method == 'POST' and request.FILES['myfile']:

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import csv
 import io
 import os
@@ -7,98 +7,77 @@ from django.core.files.storage import FileSystemStorage
 
 from .forms import ContactForm2, ContactForm1
 from incidenticosenza import settings
-from formtools.wizard.views import SessionWizardView
 
-<<<<<<< HEAD
-from .uploadfileform import CheckBox, MyForm
 
-=======
->>>>>>> parent of 3d5f281... Lavoro di Lunedì 24
+from .uploadfileform import CheckBox, MyForm, Box
+
 
 def home(request):
 
     if request.method == 'GET':
-        print("call")
+        return render(request, "analizzadati/home.html")
 
-        form2 = ContactForm2()
-        form1 = ContactForm1()
-        w = ContactWizard()
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
 
-      #  print(w.form.forms)
+        myfile.seek(0)
+        data = csv.DictReader(io.StringIO(myfile.read().decode('ISO-8859-1')), delimiter=';')
+        print(type(data))
 
-        # w.done()
+        lista = []
+        header = []
+        i = 0
 
-       # return render(request, "analizzadati/home2.html", {'form1': form1, 'form2': form2, 'wizard': w})
-        return render(request, "analizzadati/home3.html", {'wizard': w})
-    # if request.method == 'POST' and request.FILES['myfile']:
-    #     myfile = request.FILES['myfile']
+        for line in data:
+            if i == 0:
 
-    #     myfile.seek(0)
-    #     data = csv.DictReader(io.StringIO(myfile.read().decode('ISO-8859-1')), delimiter=';')
+                for s in line:
 
-    #     request.session['data'] = data
+                    header.append(s)
+            else:
+                lista.append(line)
+            i = i + 1
 
-    #     return HttpResponse("ciao")
+        print(header)
 
-    # if request.method=='POST':
+        request.session['dati'] = lista
+        request.session['header'] = header
+
+        return redirect("selezionaColonne")
 
 
-<<<<<<< HEAD
 def selezionaColonne(request):
 
     if request.method == 'GET':
 
-        #data = request.session['data']
+        # data = request.session['data']
         # count = 0
         # for d in data:
         #  count+=1
 
         n = 10
-        #form = CheckBox(2)
-        form = MyForm()
+        # form = CheckBox(2)
+        box = Box(request.session['header'])
+        # form = CheckBox()
        # print(form)
 
         print("CREAZIONE FORM2")
         # print(form)
         # print(form.is_valid())
-        print("VALIDO")
-        return render(request, "analizzadati/selezionaColonne.html", {"form": form})
+       # print("VALIDO")
+        return render(request, "analizzadati/selezionaColonne.html", {"box": box})
     else:
 
-        # f = CheckBox(request.POST)
-        # print("###########")
-        # # print(request.POST.items())
-        # #prova = request.POST['CheckBoxk']
-        # # print()
+        settings = {}
 
-        # if(f.is_valid()):
-        #     print("FORM VALIDO")
-        #     print(f.cleaned_data)
+        header = request.session['header']
 
-        # diz = f.get_f()
+        for field in header:
+            if field in request.POST:
+                settings[field] = True
+            else:
+                settings[field] = False
 
-        # for key, val in diz:
-        #     print(key)
-        #     print(val)
-        # print("Dizionario")
-        # # print(diz["ProvaNumero_1"])
+        request.session['settings'] = settings
 
-        # print(f.is_bound)
         return HttpResponse("ciao")
-
-
-=======
->>>>>>> parent of 3d5f281... Lavoro di Lunedì 24
-class ContactWizard(SessionWizardView):
-    template_name = "analizzadati/home3.html"
-    #form_list = []
-
-    file_storage = FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'photos'))
-
-    # def setForm(form_list):
-    #         self.form_list= form_list
-    condition_dict = {'1': ""}
-
-    def done(self, form_list, **kwargs):
-
-        return HttpResponseRedirect("OKKKK")

@@ -4,50 +4,52 @@
   <div class="content">
     <div class="container-fluid">
       <div class="row justify-content-md-center p-5" >
-        <div class="col-md-6 " >
+        <div class="col-md-8 " >
           <div class="card stacked-form">
             <div class="card-header ">
               <h4 class="card-title text-center">Seleziona le colonne da analizzare</h4>
             </div>
             <div class="card-body ">
-              <form action="" method="post">
-
-               <!-- {% for item in object_list %}
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" value="{{item.id}}" name="my_object">
-                      <span class="form-check-sign"></span>
-                      {{ item.name }}
-                    </label>
-                  {% endfor %} -->
-
-                  <form method="POST" action='' enctype="multipart/form-data">
-                    <div class="form-group">
-                      {% csrf_token %}
-                      {% for field_name in box.fields %}
-                        <div class="form-check">
-                          <label class="form-check-label">
-                          <input class="form-check-input" name="{{ field_name }}" type="checkbox">
-                            <span class="form-check-sign"></span>
-                            {{ field_name }}
-                          </label>
-                        </div>
-                      {% endfor %}
+              <div class="row">
 
 
-                  <!--  </div>
+                <div class="col-md-12 " >
+                <form action="" method="post">
+                  <!-- {% for item in object_list %}
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" value="">
+                        <input class="form-check-input" type="checkbox" value="{{item.id}}" name="my_object">
                         <span class="form-check-sign"></span>
-                        Unchecked
+                        {{ item.name }}
                       </label>
-                    </div> -->
-                    <div class="card-footer text-center">
-                      <button id="prova" type="submit" class="btn btn-fill btn-info center-block" >  AnalizzaCSV </button>
-                    </div>
-                    <!-- </div> -->
-                  </form>
+                    {% endfor %} -->
+                    <form method="POST" action='' enctype="multipart/form-data">
+                      <div class="form-group">
+                        {% csrf_token %}
+                        {% for field_name in box.fields %}
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input class="form-check-input" name="{{ field_name }}" type="checkbox">
+                              <span class="form-check-sign"></span>
+                              {{ field_name }}
+                            </label>
+                          </div>
+                        {% endfor %}
+                      <!--  </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" value="">
+                          <span class="form-check-sign"></span>
+                          Unchecked
+                        </label>
+                      </div> -->
+                      <div class="card-footer text-center">
+                        <button id="prova" type="submit" class="btn btn-fill btn-info center-block" >  AnalizzaCSV </button>
+                      </div>
+                      <!-- </div> -->
+                    </form>
+                  </div>
+                  </div>
                 </div>
               </div>
             </div>

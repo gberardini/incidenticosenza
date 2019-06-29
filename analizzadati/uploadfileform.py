@@ -1,4 +1,5 @@
 from django import forms
+from collections import OrderedDict
 
 
 class UploadFileForm(forms.Form):
@@ -62,21 +63,67 @@ class CheckBox(forms.Form):
 
 class Box():
 
-    fields = []
+    #fields = []
 
-    def __init__(self, *args):
+    def __init__(self, fields):
 
-        lista = args[0]
+        # lista = args[0]
 
-        # print("\n \n \n ")
-        # print(args)
+        # # print("\n \n \n ")
+        # # print(args)
 
-        for field in lista:
-            # print("append campo", field)
-            self.fields.append(field)
+        # for field in lista:
+        #     # print("append campo", field)
+        #     self.fields.append(field)
+
+        self.fields = fields
 
         print('CAMPI CREATI \n')
         print(self.fields)
+
+
+class DataSet():
+
+    # fields = []
+    # dataset = []
+
+    def __init__(self):
+        pass
+
+    # costruisci su un dizionario OrderDict
+    def __init__(self, diz={}, header=[]):
+        self.fields = []
+        self.dataset = {}
+
+        if not header:
+            return
+
+        for f in header:
+            self.fields.append(f)
+            if f not in self.dataset:
+                self.dataset[f] = []
+
+        for od in diz:
+            for f in self.fields:
+                self.dataset[f].append(od[f])
+                lung = len(self.dataset[f])
+
+        print(self.dataset)
+
+    def data_numincidenti(self, dati):
+
+        # estrai date senza ripetizioni
+        lista_date = list(OrderedDict.fromkeys(dati['Data']))
+        diz = {"Data": lista_date,
+               "Num": []}
+        print("##########")
+        print(dati)
+
+        for data in lista_date:
+            diz["Num"].append(dati['Data'].count(data))
+
+        print(diz)
+        return diz
 
 
 class MyForm(forms.Form):

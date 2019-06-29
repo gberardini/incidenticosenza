@@ -3,7 +3,7 @@ from django.core.files.storage import FileSystemStorage
 
 
 class ContactForm1(forms.Form):
-    subject = forms.FileField()
+    subject = forms.BooleanField()
 
 
 class ContactForm2(forms.Form):

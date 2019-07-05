@@ -107,8 +107,8 @@ class DataSet():
             for f in self.fields:
                 self.dataset[f].append(od[f])
                 lung = len(self.dataset[f])
-
-        print(self.dataset)
+        #print("SELF DATASET S")
+        #print(self.dataset)
 
     def data_numincidenti(self, dati):
 

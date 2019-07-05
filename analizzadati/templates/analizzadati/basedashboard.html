@@ -20,7 +20,65 @@
     </head>
     <body>
 
-        <div class="wrapper wrapper-full-page" >
+
+
+    <div class="wrapper">
+        <div class="sidebar" data-color="orange" data-image="../assets/img/sidebar-5.jpg">
+            <!--
+            Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+            Tip 2: you can also add an image using data-image tag
+            -->
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                   <!--  <img src="https://cdn3.iconfinder.com/data/icons/wpzoom-developer-icon-set/500/80-128.png" srcset="https://cdn3.iconfinder.com/data/icons/wpzoom-developer-icon-set/500/80-128.png 1x, https://cdn3.iconfinder.com/data/icons/wpzoom-developer-icon-set/500/80-256.png 2x" alt="calendar icon" class="d-block" height="128" width="128" data-scale="2"> -->
+                     <p></p>
+                    <a href="" class="simple-text logo-normal">
+                        Seleziona gruppo
+                    </a>
+                </div>
+
+                <ul class="nav">
+                    <li class="nav-item ">
+                        <a class="nav-link" href='{% url "dashboard-data" %}'>
+                            <i class= "nc-icon nc-tag-content" ></i>
+                            <p>Basati su Data</p>
+                        </a>
+                    </li>
+
+
+
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="charts.html">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>Basati su Conducenti</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="calendar.html">
+                            <i class="nc-icon nc-single-copy-04"></i>
+                            <p>Basato su Cond. Strada</p>
+                        </a>
+                    </li>
+                      <li class="nav-item ">
+                        <a class="nav-link" href="calendar.html">
+                            <i class="nc-icon nc-icon nc-umbrella-13"></i>
+                            <p>Basato su Cond. Meteo</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="calendar.html">
+                            <i class="nc-icon nc-bus-front-12"></i>
+                            <p>Basato su Cond Traffico</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+
+       <!--  <div class="wrapper wrapper-full-page" > -->
             <!--
             {% if messages %}
                 {% for message in messages %}
@@ -31,6 +89,8 @@
             {% endif %} -->
             {% block content %}
             {% endblock %}
+
+        </div>
         </body>
 
 

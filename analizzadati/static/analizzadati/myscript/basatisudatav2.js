@@ -1,22 +1,33 @@
-  $( document ).ready(function() {
-    console.log("hello world")
+$( document ).ready(function() {
+    //console.log("hello world")
+    getData().done(createBarchart,createPiechart)
+});
 
-    labels = []
-    values = []
-    var endpoint = '/incidenticosenza/ajax/dashboard-data'
-    $.ajax({
-    method:"GET",
-    url:endpoint,
-        success: function(data){
+
+var barchart;
+
+function getData(){
+        var endpoint = '/incidenticosenza/ajax/dashboard-data'
+        return $.ajax({
+        method:"GET",
+        url:endpoint
+
+    });
+}//getData
+
+
+
+
+function createBarchart(data){
+        labels = []
+        values = []
         labels = data.datachart_day.labels
         values = data.datachart_day.values
         console.log(data)
         console.log("successo")
         var ctx = document.getElementById('myChart');
-        var ctx2 = document.getElementById('myChart2');
 
-
-        var barchart = new Chart(ctx, {
+        barchart = new Chart(ctx, {
         // The type of chart we want to create
          type: 'bar',
         // The data for our dataset
@@ -40,14 +51,14 @@
             }
                  }//option
          })//chart
-
-        labels = data.mesechart.labels
-        values = data.mesechart.values
+}
 
 
-
-
-        var pie = new Chart(ctx2, {
+function createPiechart(data){
+    labels = data.mesechart.labels
+    values = data.mesechart.values
+    var ctx2 = document.getElementById('myChart2');
+    var pie = new Chart(ctx2, {
         type: 'pie',
         data: {
           labels: labels,
@@ -63,37 +74,13 @@
             //text: 'Predicted world population (millions) in 2050'
           }
         }
-        });//PieChart
+        })//PieChart
 
 
+}
 
-
-
-
-
-        var canvas = document.getElementById('myChart');
-        canvas.width = canvas.parentElement.clientWidth;
-        canvas.height = canvas.parentElement.clientHeight;
-        console.log(canvas.parentElement.clientWidth)
-        console.log(canvas.parentElement.clientWidth)
-
-
-
-
-    $("#btnsettimana").click(function () {
-        var username = "ciao";
+function weekview(data){
         var colors = ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
-
-
-
-        $.ajax({
-        url: '/incidenticosenza/ajax/dashboard-data',
-        data: {
-          'username': username
-        },
-        dataType: 'json',
-        success: function (data) {
-
         labels= data.datachart_month_labels
 
         datasets= []
@@ -112,72 +99,46 @@
             datasets.push(dict)
         }
 
-        console.log("dtaset")
-
-        console.log(datasets)
-
-
-
-
+          // var barchart = document.getElementById('myChart');
 
            barchart.data.labels=labels
            barchart.data.datasets=datasets
            barchart.update()
 
-        },
+}
 
-        error: function(data){
-            alert("not nice")
-        }
-      });
+
+
+function daysview(data){
+    barchart.destroy()
+    createBarchart(data)
+
+}
+
+
+$("#btnsettimana").click(function () {
+
+        getData().done(weekview)
+
     });
 
 
 
-
-
-    $("#btngiorno").click(function () {
-
-
-        $.ajax({
-        url: '/incidenticosenza/ajax/dashboard-data',
-        data: {
-          'username': username
-        },
-        dataType: 'json',
-        success: function (data) {
-
-
-           barchart.data.datasets=datasets
-           barchart.update()
-
-        },
-
-        error: function(data){
-            alert("not nice")
-        }
-      });
-    });
-
-
-
-
-    },//function success
-    error : function(){
-        console.log("errror")
-
-    }//function error
-    });
-
-
-
-
-
-
-
-
-
+$("#btngiorno").click(function () {
+        getData().done(daysview)
 });
+
+/*
+
+        var canvas = document.getElementById('myChart');
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = canvas.parentElement.clientHeight;
+        console.log(canvas.parentElement.clientWidth)
+        console.log(canvas.parentElement.clientWidth)
+
+*/
+
+
 
 
 

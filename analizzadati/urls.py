@@ -11,5 +11,7 @@ urlpatterns = [
     path('selezionaColonne', views.selezionaColonne, name='selezionaColonne'),
     path('dashboard', views.dashboard, name='analisi-dashboard'),
     path('dashboard-data', views.dashboard_data, name='dashboard-data'),
-    path('ajax/dashboard-data', views.dashboard_data_ajax)
+    path('dashboard-conducenti', views.dashboard_conducenti, name='dashboard-conducenti'),
+    path('ajax/dashboard-data', views.dashboard_data_ajax),
+    path('ajax/dashboard-conducenti', views.dashboard_conducenti_ajax)
 ]

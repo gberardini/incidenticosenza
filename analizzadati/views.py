@@ -129,7 +129,59 @@ def dashboard_data(request):
         # data = {"numsinistri":
         #         "giorno più incidenti":
         #         "mesepiùincidenti": }
-        return render(request, "analizzadati/dashboard-data.html")
+
+        dataset = request.session['dataset']
+        data = {
+            # ccorreggere sin moda
+            "incmoda": helpers.sinistri_moda(dataset),
+            "datamoda": helpers.data_moda(dataset),
+            "giornomoda": helpers.giorno_moda(dataset)
+
+        }
+
+        # print(data)
+        return render(request, "analizzadati/dashboard-data.html", {"data": data})
+
+
+def dashboard_conducenti(request):
+
+    if request.method == 'GET':
+        dataset = request.session['dataset']
+        data = {
+            "num": helpers.tuple_analizzate_conducente(dataset),
+            "err": helpers.tuple_errore_conducente(dataset),
+            "fasce_eta": helpers.tuple_fasce_eta(dataset)
+        }
+        # print(dataset)
+        diz = helpers.fasciaeta_tipo_numero(dataset)
+        return render(request, "analizzadati/dashboard-conducenti.html", {"data": data})
+
+
+def dashboard_conducenti_ajax(request):
+
+    dataset = request.session['dataset']
+
+    data = {}
+
+    # print(dataset)
+
+    diz = helpers.fasciaeta_tipo_numero(dataset)
+
+    lista_fasce = helpers.tuple_fasce_eta(dataset)
+
+
+    #continua qui
+    # for fascia in lista_fasce:
+    #     query = "datachart_{}".format(fascia)
+    #     data[query] = {"labels": diz['Data'],
+    #                     "values": diz['Num']}
+
+
+
+    # fasciaeta -> { tipoinc -> num }
+    # data["datachart_fasciaeta"] =
+
+    pass
 
 
 def dashboard_data_ajax(request):

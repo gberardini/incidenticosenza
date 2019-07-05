@@ -15,8 +15,8 @@
                                 </div>
                                 <div class="col-7">
                                     <div class="numbers">
-                                        <p class="card-category">Number</p>
-                                        <h4 class="card-title">150GB</h4>
+                                        <p class="card-category">Numero sinistri analizzati</p>
+                                        <h4 class="card-title">{{ data.incmoda }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -40,8 +40,12 @@
                                 </div>
                                 <div class="col-7">
                                     <div class="numbers">
-                                        <p class="card-category">Revenue</p>
-                                        <h4 class="card-title">$ 1,345</h4>
+                                        <p class="card-category">Data maggiori incidenti</p>
+                                        <h4 class="card-title">
+                                        {% for data in data.datamoda %}
+                                            {{ data }}
+                                        {% endfor %}
+                                        </h4>
                                     </div>
                                 </div>
                             </div>
@@ -65,8 +69,12 @@
                                 </div>
                                 <div class="col-7">
                                     <div class="numbers">
-                                        <p class="card-category">Errors</p>
-                                        <h4 class="card-title">23</h4>
+                                        <p class="card-category">Giorno con maggiori incidenti </p>
+                                        <h4 class="card-title">
+                                        {% for data in data.giornomoda %}
+                                            {{ data }}
+                                        {% endfor %}
+                                        </h4>
                                     </div>
                                 </div>
                             </div>
@@ -113,15 +121,13 @@
                             <p class="card-category">Dati relativi al mese di Gennaio e Febbraio 2013</p>
                         </div>
                         <div class="card-body ">
-                        <div class="row">
-                            <div class="col-md-9"></div>
-
-                            <div class="btn-group">
-                                                    <button id="btnsettimana" type="button" class="btn btn-default btn-outline">Per settimana</button>
-
-                                                    <button id="btngiorno"  type="button" class="btn btn-default btn-outline">Per giorno</button>
+                            <div class="row">
+                                <div class="col-md-9"></div>
+                                <div class="btn-group">
+                                    <button id="btnsettimana" type="button" class="btn btn-default btn-outline">Per settimana</button>
+                                    <button id="btngiorno"  type="button" class="btn btn-default btn-outline">Per giorno</button>
+                                </div>
                             </div>
-                        </div>
                             <div class="row p-1">
                                 <canvas id="myChart" ></canvas>
                                 <!--  <div class="col-md-6 ml-auto mr-auto">
@@ -139,8 +145,7 @@
                         </div>
                         <div class="card-body ">
                             <div class="row p-2">
-                               <canvas id="myChart2"  height="850" width="500"></canvas>
-
+                                <canvas id="myChart2"  height="850" width="500"></canvas>
                                 <!--  <div class="col-md-6 ml-auto mr-auto">
                                     <div id="worldMap" style="height: 300px;"></div>
                                 </div> -->
@@ -149,7 +154,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-4">
                     <div class="card ">
                         <div class="card-header ">
@@ -179,8 +184,6 @@
                             <p class="card-category">24 Hours performance</p>
                         </div>
                         <div class="card-body ">
-                            <!-- <div id=chartHours class="ct-chart"></div> -->
-
                         </div>
                         <div class="card-footer ">
                             <div class="legend">
@@ -195,8 +198,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
+            </div> -->
+            <!-- <div class="row">
                 <div class="col-md-6">
                     <div class="card ">
                         <div class="card-header ">
@@ -356,7 +359,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+        <!--  </div> -->
+    </div>
     </div>
     <footer class="footer">
         <div class="container">

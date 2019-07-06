@@ -120,18 +120,21 @@
                         </div>
                         <div class="card-body ">
                             <div class="row">
+
+
+
                                 <!-- <div class="col-md-9"></div> -->
                                 <!-- <div class="btn-group">
                                     <button id="btnsettimana" type="button" class="btn btn-default btn-outline">Per settimana</button>
                                     <button id="btngiorno"  type="button" class="btn btn-default btn-outline">Per giorno</button>
                                 </div>
                             </div> -->
-                            <div class="row p-1">
-                                <canvas id="myChart" ></canvas>
+                           <!--  <div class="row p-1"> -->
+                                <canvas id="Piechart-{{ fascia }}" ></canvas>
                                 <!--  <div class="col-md-6 ml-auto mr-auto">
                                     <div id="worldMap" style="height: 300px;"></div>
                                 </div> -->
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>
@@ -177,6 +180,53 @@
     </footer>
 {% endblock %}
 {% block jquery %}
-    <!-- <script src="{% static 'analizzadati/myscript/basatisudatav2.js' %}"" type="text/javascript"> -->
-    </script>
+   <!--  <script src="{% static 'analizzadati/myscript/basatisuconducente.js' %}" type="text/javascript">
+    </script> -->
+
+
+
+<script src="{% static 'analizzadati/myscript/basatisuconducente.js' %}" type="text/javascript">
+</script>
+
+
+<!-- <script type="text/javascript">
+$( document ).ready(function() {
+    //console.log("hello world")
+    /*getData().done(testPost)*/
+     var endpoint = '/incidenticosenza/ajax/dashboard-conducenti'
+     $.ajax({
+        method:"GET",
+        url:endpoint,
+        success:function(data){
+              alert("hi")
+        },
+        error:function(data){
+            alert("neg")
+        }
+
+    });
+    /*getData().done(createPiechart)*/
+});
+
+
+/*var barchart;
+*/
+
+function getData(){
+        var endpoint = '/incidenticosenza/ajax/dashboard-conducenti'
+        return $.ajax({
+        method:"GET",
+        url:endpoint,
+        success:function(data){
+              alert("hi")
+        },
+        error:function(data){
+            alert("neg")
+        }
+
+    });
+}//getData
+
+
+</script> -->
 {% endblock %}

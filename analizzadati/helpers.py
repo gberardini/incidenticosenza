@@ -234,7 +234,6 @@ def fasciaeta_tipo_numero(dataset):
 
     indice = 0
     for fascia in dataset['Fascia di Età Conducente Veicolo (A)']:
-        indice += 1
 
         if fascia == "":
             continue
@@ -244,11 +243,14 @@ def fasciaeta_tipo_numero(dataset):
 
         tipo_collisione = dataset['Tipo collisione'][indice]
 
-        print("dizFAsce")
-        print(diz_fasce)
+        # print("dizFAsce")
+        # print(diz_fasce)
 
-        print("TipoCollisione")
-        print(tipo_collisione)
+        # print("TipoCollisione")
+        # print(tipo_collisione)
+
+        # print("Indice")
+        # print(indice)
 
         assert tipo_collisione != ""
 
@@ -257,4 +259,8 @@ def fasciaeta_tipo_numero(dataset):
         else:
             diz_fasce[fascia][tipo_collisione] += 1
 
+        indice += 1
+
     print(diz_fasce)
+
+    return diz_fasce

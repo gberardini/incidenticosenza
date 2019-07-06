@@ -161,7 +161,7 @@ def dashboard_conducenti_ajax(request):
 
     dataset = request.session['dataset']
 
-    data = {}
+    data = {"ciao": 123}
 
     # print(dataset)
 
@@ -169,19 +169,22 @@ def dashboard_conducenti_ajax(request):
 
     lista_fasce = helpers.tuple_fasce_eta(dataset)
 
-
-    #continua qui
+    # continua qui
     # for fascia in lista_fasce:
     #     query = "datachart_{}".format(fascia)
-    #     data[query] = {"labels": diz['Data'],
-    #                     "values": diz['Num']}
+    #     tipi_coll = []
+    #     num_inc = []
+    #     for k, v in diz[fascia]:
+    #         tipi_coll.append(k)
+    #         num_inc.append(v)
 
-
+    #     data[query] = {"labels": tipi_coll,
+    #                    "values": num_inc}
 
     # fasciaeta -> { tipoinc -> num }
     # data["datachart_fasciaeta"] =
 
-    pass
+    return JsonResponse(data)
 
 
 def dashboard_data_ajax(request):

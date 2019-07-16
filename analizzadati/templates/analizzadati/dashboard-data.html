@@ -10,13 +10,13 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-chart text-warning"></i>
+                                        <i class="nc-icon nc-check-2 text-success"></i>
                                     </div>
                                 </div>
                                 <div class="col-7">
                                     <div class="numbers">
                                         <p class="card-category">Numero sinistri analizzati</p>
-                                        <h4 class="card-title">{{ data.incmoda }}</h4>
+                                        <h4 class="card-title">{{ incmoda }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -35,15 +35,15 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-light-3 text-success"></i>
+                                        <i class="nc-icon nc-chart-bar-32 text-primary"></i>
                                     </div>
                                 </div>
                                 <div class="col-7">
                                     <div class="numbers">
                                         <p class="card-category">Data maggiori incidenti</p>
                                         <h4 class="card-title">
-                                        {% for data in data.datamoda %}
-                                            {{ data }}
+                                        {% for datainc in datamoda %}
+                                            {{ datainc }}
                                         {% endfor %}
                                         </h4>
                                     </div>
@@ -64,14 +64,14 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-vector text-danger"></i>
+                                        <i class="nc-icon nc-ambulance text-danger"></i>
                                     </div>
                                 </div>
                                 <div class="col-7">
                                     <div class="numbers">
                                         <p class="card-category">Giorno con maggiori incidenti </p>
                                         <h4 class="card-title">
-                                        {% for data in data.giornomoda %}
+                                        {% for data in giornomoda %}
                                             {{ data }}
                                         {% endfor %}
                                         </h4>
@@ -93,13 +93,13 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-favourite-28 text-primary"></i>
+                                        <i class="nc-icon nc-vector text-warning"></i>
                                     </div>
                                 </div>
                                 <div class="col-7">
                                     <div class="numbers">
-                                        <p class="card-category">Followers</p>
-                                        <h4 class="card-title">+45K</h4>
+                                        <p class="card-category">Errori trovati</p>
+                                        <h4 class="card-title">{{ errori }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -114,21 +114,25 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-9">
-                    <div class="card ">
+                <div class="col-md-9" >
+                    <div class="card " style="min-height: 47rem;">
                         <div class="card-header ">
                             <h4 class="card-title">Frequenza incidenti</h4>
                             <p class="card-category">Dati relativi al mese di Gennaio e Febbraio 2013</p>
                         </div>
                         <div class="card-body ">
                             <div class="row">
-                                <div class="col-md-9"></div>
+                                <div class="col-md-8"></div>
+                                <div class="pull-right">
                                 <div class="btn-group">
+                                    <button id="btnfasciaoraria" type="button" class="btn btn-default btn-outline">Per fascia oraria</button>
                                     <button id="btnsettimana" type="button" class="btn btn-default btn-outline">Per settimana</button>
                                     <button id="btngiorno"  type="button" class="btn btn-default btn-outline">Per giorno</button>
+
                                 </div>
                             </div>
-                            <div class="row p-1">
+                            </div>
+                            <div class="row p-2">
                                 <canvas id="myChart" ></canvas>
                                 <!--  <div class="col-md-6 ml-auto mr-auto">
                                     <div id="worldMap" style="height: 300px;"></div>
@@ -138,7 +142,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card ">
+                    <div class="card" style="min-height: 47rem;">
                         <div class="card-header ">
                             <h4 class="card-title">Incidenti per mese</h4>
                             <p class="card-category">Dati relativi al mese di Gennaio e Febbraio 2013</p>
@@ -363,41 +367,7 @@
         <!--  </div> -->
     </div>
     </div>
-    <footer class="footer">
-        <div class="container">
-            <nav>
-                <ul class="footer-menu">
-                    <li>
-                        <a href="dashboard.html#">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dashcol board.html#">
-                            Company
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dashboard.html#">
-                            Portfolio
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dashboard.html#">
-                            Blog
-                        </a>
-                    </li>
-                </ul>
-                <p class="copyright text-center">
-                    ©
-                    <script>
-                    document.write(new Date().getFullYear())
-                    </script>
-                    <a href="https://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                </p>
-            </nav>
-        </div>
-    </footer>
+
 </div>
 {% endblock %}
 {% block jquery %}

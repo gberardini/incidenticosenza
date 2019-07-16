@@ -4,8 +4,8 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-3 col-sm-6 " >
-                    <div class="card card-stats" style="min-height: 11rem">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card card-stats">
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-5">
@@ -16,7 +16,6 @@
                                 <div class="col-7">
                                     <div class="numbers">
                                         <p class="card-category">Numero sinistri analizzati</p>
-                                        </br>
                                         <h4 class="card-title">{{ num }}</h4>
                                     </div>
                                 </div>
@@ -31,25 +30,23 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <div class="card card-stats" style="min-height: 11rem">
+                    <div class="card card-stats">
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-5">
                                     <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-single-02 text-primary"></i>
+                                        <i class="nc-icon nc-umbrella-13 text-primary"></i>
                                     </div>
                                 </div>
                                 <div class="col-7">
                                     <div class="numbers">
-                                        <p class="card-category">Fascia età coinvolta maggiormente in incidenti</p>
+                                        <p class="card-category">Condizione asfalto più frequente</p>
                                         <h4 class="card-title">
 
-                                            {% for fascia in fascia_moda %}
+                                           {% for data in asfalto_moda %}
+                                            {{ data }}
+                                        {% endfor %}
 
-                                                {{ fascia }}
-
-
-                                            {% endfor %}
 
                                         </h4>
                                     </div>
@@ -66,24 +63,25 @@
                 </div>
 
                 <div class="col-lg-3 col-sm-6">
-                    <div class="card card-stats" style="min-height: 11rem">
+                    <div class="card card-stats">
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-5">
                                     <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-simple-remove text-danger"></i>
+                                        <i class="nc-icon nc-support-17 text-danger"></i>
                                     </div>
                                 </div>
                                 <div class="col-7">
                                     <div class="numbers">
-                                        <p class="card-category">Tipologia di scontro più frequente </p>
+                                        <p class="card-category">Tipo strada maggiori incidenti: </p>
                                         <h4 class="card-title">
-                                           {% for tipologiainc in tipologiainc_moda %}
-
-                                                {{ tipologiainc }}
 
 
-                                            {% endfor %}
+                                           {% for data in tipostrada_moda %}
+                                            {{ data }}
+                                        {% endfor %}
+
+
                                         </h4>
                                     </div>
                                 </div>
@@ -97,8 +95,8 @@
                         </div>
                     </div>
                 </div>
-                   <div class="col-lg-3 col-sm-6">
-                    <div class="card card-stats" style="min-height: 11rem">
+                 <div class="col-lg-3 col-sm-6">
+                    <div class="card card-stats">
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-5">
@@ -110,7 +108,6 @@
                                     <div class="numbers">
                                         <p class="card-category">Errori trovati </p>
                                         <h4 class="card-title">
-                                        </br>
                                         {{ err }}
                                         </h4>
                                     </div>
@@ -127,94 +124,68 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-9">
-                    <div class="card " style="min-height: 60rem">
+                <div class="col-md-12">
+                    <div class="card " style="min-height: 38rem">
                         <div class="card-header ">
                             <h4 class="card-title">Frequenza incidenti</h4>
                             <p class="card-category">Dati relativi al mese di Gennaio e Febbraio 2013</p>
+
+                            <div class="row p-2">
+                            <div class="col-md-9"></div>
+
+                             <div class="col-md-3">
+                             <!-- <div></div> -->
+
+                            <div class="btn-group">
+
+                                    <button id="btncondasf" type="button" class="btn btn-default btn-outline">Per condizioni asfalto</button>
+                                    <button id="btntipostrada" type="button" class="btn btn-default btn-outline">Per tipologia strada</button>
+
+                            </div>
+                            </div>
+
                         </div>
-                        <div class="card-body " >
-                            <!-- <div class="row">
-                                <div class="col-md-9"></div>
-                                <div class="btn-group">
-                                    <button id="btnsettimana" type="button" class="btn btn-default btn-outline">Per fascia età</button>
-                                    <button id="btngiorno"  type="button" class="btn btn-default btn-outline">Per tipo collisione</button>
-                                </div>
-                            </div> -->
-                            <div class="row p-3">
-                                <canvas id="myChart" ></canvas>
+                        <div class="card-body ">
+
+                                <canvas id="myChart"></canvas>
                                 <!--  <div class="col-md-6 ml-auto mr-auto">
                                     <div id="worldMap" style="height: 300px;"></div>
-                                </div> -->
-                            </div>
+                                </div> -->s
+
                         </div>
                     </div>
                 </div>
 
 
-                 <div class="col-md-3">
-                    <div class="card" style="min-height: 60rem">
+                <!--  <div class="col-md-6">
+                    <div class="card" style="min-height: 47rem">
                         <div class="card-header ">
                             <h4 class="card-title">Frequenza incidenti per tipologia collisione</h4>
                             <p class="card-category">Dati relativi al mese di Gennaio e Febbraio 2013</p>
 
 
-                            <p></p>
 
-                            <div class="row">
-                                <div class="col-md-4">
-                                <p class="card-category">Fascia d'età:
-                                    <p id="fasciatext" class="card-category">Tutte</p></p>
-                                </div>
-                                 <div class="col-md-8 align-self-center">
-
-                                  <div class="pull-right">
-                                    <button id="backtoglobal" class="btn btn-outline btn-wd">Mostra tutte le fasce</button>
-                                </div>
-                                </div>
-                            </div>
 
                             </div>
-                            <div class="d-flex ">
-                        <div class="card-body  ">
+                        <div class="card-body ">
 
 
-                                <canvas id="myChart2"  width="200%" height="200%"  margin-left="-50%" ></canvas>
+                                <canvas id="myChart2"></canvas>
                                 <!--  <div class="col-md-6 ml-auto mr-auto">
                                     <div id="worldMap" style="height: 300px;"></div>
                                 </div> -->
 
 
                         </div>
-
                     </div>
-                </div>
+                </div> -->
 
 
             </div>
 
 
 
-    <!-- <div class = "row">
-        <div class="col-md-12">
-                    <div class="card ">
-                        <div class="card-header ">
-                            <h4 class="card-title">Interazioni fra conducenti </h4>
-                            <p class="card-category">Dati relativi al mese di Gennaio e Febbraio 2013</p>
-                        </div>
-                        <div class="card-body ">
 
-                            <div class="row p-1">
-                                  <canvas id="myChart3"></canvas>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-    </div> -->
     </div>
 
 {% endblock %}
@@ -224,7 +195,7 @@
 
 
 
-<script src="{% static 'analizzadati/myscript/basatisucond.js' %}" type="text/javascript">
+<script src="{% static 'analizzadati/myscript/basatisumeteo.js' %}" type="text/javascript">
 </script>
 
 

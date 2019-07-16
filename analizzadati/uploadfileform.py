@@ -7,6 +7,14 @@ class UploadFileForm(forms.Form):
     file = forms.FileField()
 
 
+class Setting():
+    def __init__(self, fields):
+        self.fields = []
+        for f in fields:
+            fields.append(f)
+            self.val = fields[f]
+
+
 class CheckBox(forms.Form):
 
     # your_name = forms.CharField(label='Your name', max_length=100)
@@ -108,7 +116,7 @@ class DataSet():
                 self.dataset[f].append(od[f])
                 lung = len(self.dataset[f])
         #print("SELF DATASET S")
-        #print(self.dataset)
+        # print(self.dataset)
 
     def data_numincidenti(self, dati):
 

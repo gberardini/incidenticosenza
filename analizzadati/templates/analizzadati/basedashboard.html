@@ -15,8 +15,8 @@
         <!--      <link href="../../css/bootstrap.min.css" rel="stylesheet" /> -->
         <link href="{% static 'analizzadati/css/light-bootstrap-dashboard.css' %}" rel="stylesheet" />
         <script type="text/javascript" src="jquery-3.3.1.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-
+        <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> -->
+        <script src="{% static 'analizzadati/js/Chart.bundle.min.js' %}"></script>
     </head>
     <body>
 
@@ -37,8 +37,30 @@
                     </a>
                 </div>
 
+
                 <ul class="nav">
-                    <li class="nav-item ">
+                {% for field in toView %}
+                    <li class="nav-item">
+                    {% for l in links %}
+                            {% if forloop.parentloop.counter0 == forloop.counter0 %}
+                        <a class="nav-link" href="{% url l %}">
+                                {% endif %}
+                        {% endfor %}
+                                {% for icon in icons%}
+                                    {% if forloop.parentloop.counter0 == forloop.counter0 %}
+                                    <i class="{{ icon }}"></i>
+                                    {% endif %}
+                                {% endfor %}
+                            <p>{{ field }}</p>
+                        </a>
+                    </li>
+
+                {% endfor %}
+
+
+
+
+                    <!-- <li class="nav-item ">
                         <a class="nav-link" href='{% url "dashboard-data" %}'>
                             <i class= "nc-icon nc-tag-content" ></i>
                             <p>Basati su Data</p>
@@ -54,24 +76,19 @@
                             <p>Basati su Conducenti</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="calendar.html">
-                            <i class="nc-icon nc-single-copy-04"></i>
-                            <p>Basato su Cond. Strada</p>
-                        </a>
-                    </li>
+
                       <li class="nav-item ">
-                        <a class="nav-link" href="calendar.html">
+                        <a class="nav-link" href='{% url "dashboard-meteo" %}'>
                             <i class="nc-icon nc-icon nc-umbrella-13"></i>
                             <p>Basato su Cond. Meteo</p>
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="calendar.html">
+                        <a class="nav-link" href='{% url "dashboard-traffico" %}'>
                             <i class="nc-icon nc-bus-front-12"></i>
                             <p>Basato su Cond Traffico</p>
                         </a>
-                    </li>
+                    </li> -->
 
                 </ul>
             </div>

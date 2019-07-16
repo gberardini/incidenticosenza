@@ -1,6 +1,9 @@
 {% extends "analizzadati/base.html" %}
 {% load static %}
 {% block content %}
+
+
+
   <div class="content">
     <div class="container-fluid">
       <div class="row justify-content-md-center p-5" >
@@ -10,7 +13,20 @@
               <h4 class="card-title text-center">Seleziona le colonne da analizzare</h4>
             </div>
             <div class="card-body ">
+              {% if messages %}
+
+              <script type="text/javascript">
+               Swal.fire({
+                  title: 'Errore!',
+                  text: 'Devi inserire almeno una colonna di interesse!',
+                  type: 'error',
+                  confirmButtonText: 'Ok'
+                })
+              </script>
+              {% endif %}
+
               <div class="row">
+
 
 
                 <div class="col-md-12 " >
@@ -26,15 +42,41 @@
                     <form method="POST" action='' enctype="multipart/form-data">
                       <div class="form-group">
                         {% csrf_token %}
+                        {%  with i=0     %}
+                        <div class="row p-2">
+                          <!-- <div class="col-md-3"> -->
+
                         {% for field_name in box.fields %}
+                         {% if forloop.counter0|divisibleby:17 or forloop.first %}
+                         <!--  {{ forloop.counter }}
+ -->
+                            <div class="col-md-4">
+                         {% endif %}
+
                           <div class="form-check">
                             <label class="form-check-label">
-                              <input class="form-check-input" name="{{ field_name }}" type="checkbox">
+                              <input class="form-check-input" name="{{ field_name }}" type="checkbox" value="" checked="true" >
                               <span class="form-check-sign"></span>
                               {{ field_name }}
+
                             </label>
                           </div>
+
+                       <!--  </br>
+ -->
+
+                          {% if forloop.counter0|add:1|divisibleby:17 or forloop.last  %}
+                          <!--  {{ forloop.counter }} -->
+                            </div>
+
+                         {% endif %}
+
+
                         {% endfor %}
+                       <!--  </div> -->
+                       </div>
+
+                        {% endwith %}
                       <!--  </div>
                       <div class="form-check">
                         <label class="form-check-label">
@@ -43,8 +85,28 @@
                           Unchecked
                         </label>
                       </div> -->
-                      <div class="card-footer text-center">
-                        <button id="prova" type="submit" class="btn btn-fill btn-info center-block" >  AnalizzaCSV </button>
+                      <div class="row"><p></p></div>
+                      <div class="row p-3">
+                     <!--  <div class="col-md-12"> -->
+                      <div class="col-md-8">
+
+
+                        <button id="select_all" class="btn btn-default mr-3" type="button">Seleziona Tutto</button>
+
+
+
+                        <button id="deselect_all" class="btn btn-default mr-3"  type="button">Deseleziona Tutto</button>
+                        </div>
+
+                      <div class="col-md-4">
+                      <!-- <div class="card-footer text-center"> -->
+                        <div class="pull-right">
+                        <button id="prova" type="submit" class="btn btn-fill btn-info center-block mr-4" >  AnalizzaCSV </button>
+                        </div>
+
+                      <!-- </div> -->
+                     <!--  </div> -->
+                    </div>
                       </div>
                       <!-- </div> -->
                     </form>
@@ -56,4 +118,47 @@
           </div>
         </div>
       </div>
-    {% endblock %}
+
+
+
+{% endblock %}
+
+
+{% block jquery %}
+
+
+<script type="text/javascript" >
+
+
+
+/*$( document ).ready(function() {
+
+    console.log("ciao")
+
+
+});*/
+
+
+$("#select_all").click(function() {
+
+    var checkboxes = $(this).closest('form').find(':checkbox');
+
+     checkboxes.prop("checked",true)
+
+});
+
+
+
+$("#deselect_all").click(function() {
+
+     var checkboxes = $(this).closest('form').find(':checkbox');
+     checkboxes.prop("checked",false)
+
+});
+
+
+
+
+</script>
+
+{% endblock %}
